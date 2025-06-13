@@ -13,8 +13,8 @@
   top: 0;
   left: 0;
   
-  -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
-  animation: sk-cubemove 1.8s infinite ease-in-out;
+  -webkit-animation: sk-cubemove 3.8s infinite ease-in-out;
+  animation: sk-cubemove 3.8s infinite ease-in-out;
 }
 
 .cube2 {

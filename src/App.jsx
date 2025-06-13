@@ -1,20 +1,54 @@
-import { useState, useEffect } from 'react'
-import styled from '@emotion/styled'
-import Formulario from './components/Formulario'
-import Resultado from './components/Resultado'
-import Spinner from './components/Spinner'
-import Error from './components/Error' // Importamos el componente de error
+import { useState, useEffect } from 'react';
+import styled from '@emotion/styled';
+import Formulario from './components/Formulario';
+import Resultado from './components/Resultado';
+import Spinner from './components/Spinner';
+import Error from './components/Error';
+import Logocripto from './img/Logocripto.png';
 
+// Estilos
 const Contenedor = styled.div`
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   width: 90%;
+  display: flex;
+  flex-direction: column;
 
   @media (min-width: 992px) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 4rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
   }
+`;
+
+const ColumnaIzquierda = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 80px;
+
+  @media (max-width: 991px) {
+    justify-content: center;
+  }
+`;
+
+const Imagen = styled.img`
+  max-width: 120px;
+  width: 100%;
+  margin-left: 40px;
+
+  @media (max-width: 991px) {
+    margin-left: 0;
+  }
+`;
+
+const ColumnaCentro = styled.div`
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Heading = styled.h1`
@@ -37,13 +71,15 @@ const Heading = styled.h1`
 `;
 
 const ContenedorResultado = styled.div`
+  flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 100px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 80px;
 
-  @media (min-width: 992px) {
-    padding-top: 150px;
+  @media (max-width: 991px) {
+    margin-top: 40px;
+    justify-content: center;
   }
 `;
 
@@ -82,13 +118,15 @@ function App() {
 
   return (
     <Contenedor>
-      <div>
+      <ColumnaIzquierda>
+        <Imagen src={Logocripto} alt="imagen criptomonedas" />
+      </ColumnaIzquierda>
+
+      <ColumnaCentro>
         <Heading>Cotiza Criptomonedas Ya!</Heading>
-
         {error && <Error>TODOS LOS CAMPOS SON OBLIGATORIOS</Error>}
-
         <Formulario setMonedas={setMonedas} />
-      </div>
+      </ColumnaCentro>
 
       <ContenedorResultado>
         {cargando && <Spinner />}

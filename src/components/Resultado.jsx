@@ -4,6 +4,12 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "rec
 const Contenedor = styled.div`
   position: relative;
   width: 100%;
+  display: flex;
+  justify-content: flex-start;
+
+  @media (max-width: 991px) {
+    justify-content: center;
+  }
 `;
 
 const Card = styled.div`
@@ -54,14 +60,14 @@ const limpiarNumero = (valor) => {
   return parseFloat(
     valor
       .replace(/[^0-9.,]/g, "")
-      .replace(",", "")        
-  ) || 0; 
+      .replace(",", "")
+  ) || 0;
 };
 
 const obtenerMoneda = (precio) => {
   if (!precio) return '';
   const partes = precio.split(' ');
-  return partes[0]; // Esto da "USD" si PRICE = "USD 27000.00"
+  return partes[0];
 };
 
 const Resultado = ({ resultado }) => {
@@ -92,6 +98,7 @@ const Resultado = ({ resultado }) => {
         <Texto>Precio más alto del día: <span>{HIGHDAY}</span></Texto>
         <Texto>Precio más bajo del día: <span>{LOWDAY}</span></Texto>
         <Texto>Variación últimas 24 Horas: <span>{CHANGEPCT24HOUR}%</span></Texto>
+        <Texto>Ultima actualización:<span>{LASTUPDATE}</span></Texto>
 
         <TituloGrafica>Variación reciente</TituloGrafica>
         <ResponsiveContainer width="100%" height={150}>
